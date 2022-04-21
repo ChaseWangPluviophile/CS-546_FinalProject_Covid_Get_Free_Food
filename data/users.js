@@ -6,6 +6,11 @@ const exportedMethods = {
   async getAllPosts() {
     const postCollection = await customers();
     return await postCollection.find({}).toArray();
+  },
+
+  async getUserById() {
+    const postCollection = await customers();
+    return await postCollection.find({}).toArray();
   }
 
 };
