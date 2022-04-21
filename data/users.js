@@ -9,8 +9,7 @@ const exportedMethods = {
   },
 
   async getUserById() {
-    const postCollection = await customers();
-    return await postCollection.find({}).toArray();
+    
   }
 
 };
