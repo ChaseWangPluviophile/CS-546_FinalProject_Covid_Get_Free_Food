@@ -1,15 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const data = require('../data');
-const postData = data.posts;
+const foodData = data.food;
 const userData = data.users;
 
-router.get('/new', async (req, res) => {
+
+router.get('/', async (req, res) => {
   const users = await userData.getAllUsers();
   res.render('posts/new', {users: users});
 });
 
-router.get('/:id', async (req, res) => {
+
+router.get('/private', async (req, res) => {
+
+  res.render('others/private', {
+      username: req.session.user.username,
+  });
+  
+});
+
+router.get('food/:id', async (req, res) => {
   try {
     const post = await postData.getPostById(req.params.id);
     res.render('posts/single', {post: post});
@@ -18,7 +28,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.get('/tag/:tag', async (req, res) => {
+router.get('/food/:id', async (req, res) => {
   const postList = await postData.getPostsByTag(req.params.tag);
   res.render('posts/index', {posts: postList});
 });
